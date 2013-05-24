@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Wolf;
@@ -25,34 +26,28 @@ public class Main extends JavaPlugin {
 
 	private boolean processPackHereCommand(Player player)
 	{
-		getLogger().info("Looking for your pack...");
 		
 		final Location loc = player.getLocation();
-		getLogger().info("b");
 		final World world = player.getWorld();
-		getLogger().info("c");
 		int countMoved=0;
 		
-		getLogger().info("0");
 		for (Chunk chunk : world.getLoadedChunks())
 		{
-			getLogger().info("1");
 			for (Entity entity : chunk.getEntities())
 			{
-				getLogger().info("2");
 				if (entity instanceof Wolf)
 				{
-					getLogger().info("3");
 					Wolf wolf = (Wolf)entity;
 					if (wolf.isTamed())
 					{
-
-						getLogger().info("4");
-						if (wolf.getTarget() == player)
+						AnimalTamer target = wolf.getOwner();
+						if (target != null)
 						{
-							getLogger().info("5");
-							wolf.teleport(loc);
-							countMoved++;
+							if (target == player)
+							{
+								wolf.teleport(loc);
+								countMoved++;
+							}
 						}
 					}
 				}
@@ -137,7 +132,6 @@ public class Main extends JavaPlugin {
 			else 
 			{
 				Player player = (Player) sender;
-				player.sendMessage("-1");
 				return processPackHereCommand(player);
 			}			
 		}
