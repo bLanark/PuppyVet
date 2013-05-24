@@ -11,4 +11,9 @@ commands:
       description: Finds all your wolves in loaded chunks of current world and teleports them to you
       usage: /packhere
       permission: puppyvet.packhere
-      permission-message: You don't have permission to move your pack       
+      permission-message: You don't have permission to move your pack
+   whosepack:
+      description: Tells you who owns the dogs within [radius]
+      usage: /packhere [radius] (default 10, max 20)
+      permission: puppyvet.whosepack
+      permission-message: You don't have permission to sniff dogs to find who feeds them                    
