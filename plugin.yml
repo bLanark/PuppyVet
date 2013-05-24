@@ -1,5 +1,5 @@
 name: PuppyVet
-main: net.sircraft.puppyvet.PuppyVetMain
+main: com.inrevo.puppyvet.Main
 version: 1.0
 commands:
    calm:
