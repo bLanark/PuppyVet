@@ -1,0 +1,14 @@
+name: PuppyVet
+main: net.sircraft.puppyvet.PuppyVetMain
+version: 1.0
+commands:
+   calm:
+      description: calms dogs/wolves, stop them being angry and growling.
+      usage: /calm [radius]
+      permission: puppyvet.calm
+      permission-message: You don't have permission to calm wolves or dogs
+   packhere:
+      description: Finds all your wolves in loaded chunks of current world and teleports them to you
+      usage: /packhere
+      permission: puppyvet.packhere
+      permission-message: You don't have permission to move your pack       
