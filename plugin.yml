@@ -4,7 +4,7 @@ version: 1.0
 commands:
    calm:
       description: calms dogs/wolves, stop them being angry and growling.
-      usage: /calm [radius]
+      usage: /calm [radius] (default 10)
       permission: puppyvet.calm
       permission-message: You don't have permission to calm wolves or dogs
    packhere:
@@ -14,6 +14,6 @@ commands:
       permission-message: You don't have permission to move your pack
    whosepack:
       description: Tells you who owns the dogs within [radius]
-      usage: /packhere [radius] (default 10, max 20)
+      usage: /packhere [radius] (default 10)
       permission: puppyvet.whosepack
       permission-message: You don't have permission to sniff dogs to find who feeds them                    

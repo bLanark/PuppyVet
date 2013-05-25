@@ -78,8 +78,6 @@ public class Main extends JavaPlugin {
 				// nothing to see, move along here 
 			}
 		}
-		if (radius > 20)
-			radius = 20;
 		
 		final Location loc = player.getLocation();
 		int squareRadius = radius * radius;
@@ -89,20 +87,17 @@ public class Main extends JavaPlugin {
 		{
 			for (Entity entity : chunk.getEntities())
 			{
-				if (loc != null)
+				if (loc.distanceSquared(entity.getLocation()) > squareRadius)
 				{
-					if (loc.distanceSquared(entity.getLocation()) > squareRadius)
-					{
-						continue;
-					}
+					continue;
 				}
 				if (entity instanceof Wolf)
 				{
 					Wolf wolf = (Wolf)entity;
 					if (wolf.isTamed())
 					{
-						AnimalTamer target = wolf.getOwner();
-						String name = target.getName();
+						AnimalTamer owner = wolf.getOwner();
+						String name = owner.getName();
 						Integer count = ownerData.get(name);
 						if (count == null)
 						{
@@ -162,12 +157,9 @@ public class Main extends JavaPlugin {
 		{
 			for (Entity entity : chunk.getEntities())
 			{
-				if (loc != null)
+				if (loc.distanceSquared(entity.getLocation()) > squareRadius)
 				{
-					if (loc.distanceSquared(entity.getLocation()) > squareRadius)
-					{
-						continue;
-					}
+					continue;
 				}
 				if (entity instanceof Wolf)
 				{
@@ -175,7 +167,7 @@ public class Main extends JavaPlugin {
 					if (wolf.isAngry())
 					{
 						wolf.setAngry(false);
-						if (!wolf.isTamed()) // don't reset the owner of tamed dogs
+						if (!wolf.isTamed() && wolf.getTarget() ==player)
 						{
 							wolf.setTarget(null);
 						}
